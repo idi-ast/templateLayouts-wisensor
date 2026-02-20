@@ -6,6 +6,51 @@ const defaultConfig: AuthConfig = {
   callbackUrl: import.meta.env.VITE_AUTH_CALLBACK_URL || "/",
 };
 
+
+const customFetchImpl = async (
+  url: URL | string | Request,
+  init?: RequestInit
+): Promise<Response> => {
+  const urlStr = url.toString();
+
+  if (urlStr.includes("/sign-in/email")) {
+    if (init?.body) {
+      try {
+        const body = JSON.parse(init.body as string) as Record<string, unknown>;
+        init = {
+          ...init,
+          body: JSON.stringify({
+            ...body,
+            service_code: import.meta.env.VITE_APP_CODE,
+          }),
+        };
+      } catch { /* ignorar si el body no es JSON */ }
+    }
+
+    const response = await fetch(url, init);
+
+    if (!response.ok) {
+      const errorData = await response
+        .json()
+        .catch(() => ({}) as Record<string, string>) as Record<string, string>;
+
+      if (errorData.error && !errorData.message) {
+        errorData.message = errorData.error;
+      }
+
+      return new Response(JSON.stringify(errorData), {
+        status: response.status,
+        statusText: response.statusText,
+        headers: { "Content-Type": "application/json" },
+      });
+    }
+
+    return response;
+  }
+
+  return fetch(url, init);
+};
+
 /**
  * Cliente de Better Auth configurado
  */
@@ -13,6 +58,7 @@ export const authClient = createAuthClient({
   baseURL: defaultConfig.baseUrl,
   fetchOptions: {
     credentials: "include",
+    customFetchImpl,
   },
 });
 
