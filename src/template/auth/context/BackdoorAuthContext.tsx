@@ -65,7 +65,11 @@ export function BackdoorAuthProvider({ children }: BackdoorAuthProviderProps) {
       
       // Si no es backdoor, usar autenticación real
       try {
-        await authClient.signIn.email({ email, password });
+        await authClient.signIn.email({
+          email,
+          password,
+          service_code: import.meta.env.VITE_APP_CODE,
+        });
       } catch (err) {
         setError((err as Error).message);
         throw err;
