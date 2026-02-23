@@ -128,7 +128,7 @@ export default function NotificationDropdown() {
           <div className="relative top-1 transition-colors cursor-pointer">
             <IconBell size={20} />
             {unreadCount > 0 && (
-              <span className="absolute top-0 -right-0.5 px-1 bg-red-500 rounded-full flex justify-center items-center text-text-100 text-[10px] font-semibold">
+              <span className="absolute -top-0.5 -right-2 px-1 bg-red-500 rounded-full flex justify-center items-center text-text-100 text-[10px] font-semibold">
                 {unreadCount > 9 ? "9+" : unreadCount}
               </span>
             )}

@@ -47,7 +47,7 @@ const BaseMap: React.FC<BaseMapProps> = ({
         style: "mapbox://styles/mapbox/satellite-v9",
       },
     }),
-    []
+    [],
   );
 
   const handleMapLoad = useCallback(() => {
@@ -59,14 +59,14 @@ const BaseMap: React.FC<BaseMapProps> = ({
   }, []);
 
   return (
-    <div className="w-full h-full relative">
+    <div className="w-full h-full relative ">
       <ReactMapGL
         ref={mapRef}
         initialViewState={{
           longitude: initialCenter.longitude,
           latitude: initialCenter.latitude,
           zoom: initialZoom,
-          pitch: 0,
+          pitch: 65,
           bearing: 0,
         }}
         mapboxAccessToken={MAPBOX_TOKEN}
@@ -80,7 +80,7 @@ const BaseMap: React.FC<BaseMapProps> = ({
         fadeDuration={0}
         onLoad={handleMapLoad}
       >
-        <div className="absolute right-0 top-0 z-10 bg-bg-100 h-full flex flex-col gap-2 p-2">
+        <div className="absolute right-0 top-0 z-50  bg-bg-100 h-full flex flex-col gap-2 p-2">
           {/* Controles de navegación nativos */}
           {/* <NavigationControl position="top-right" showCompass={true} /> */}
 

@@ -15,7 +15,7 @@ const ThemeToggleButton: React.FC = () => {
       {theme === "dark" ? (
         <IconSun size={20} className="text-yellow-400" />
       ) : (
-        <IconMoon size={20} className="text-indigo-100" />
+        <IconMoon size={20} className="text-text-100" />
       )}
     </button>
   );
