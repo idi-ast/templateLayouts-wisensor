@@ -19,7 +19,9 @@ const LayerSelector: React.FC<LayerSelectorProps> = ({
       <div className="relative">
         <button
           onClick={() => setShowMenu(!showMenu)}
-          className="bg-bg-300 gap-2 text-text-100 hover:bg-bg-200 h-8 w-8 flex justify-center items-center transition-all"
+          className={`
+            ${showMenu ? "bg-bg-100 text-text-200 " : "bg-bg-300"}
+             gap-1 text-text-100 hover:bg-bg-200 h-8 w-8 flex justify-center items-center transition-all`}
         >
           <IconMapCog size={20} />
         </button>
@@ -32,9 +34,9 @@ const LayerSelector: React.FC<LayerSelectorProps> = ({
               onClick={() => setShowMenu(false)}
             />
 
-            <div className="absolute top-12 right-0 bg-bg-100 border border-border rounded-lg shadow-xl p-3 min-w-60 z-50">
+            <div className="absolute top-0 max-h-150 overflow-y-scroll right-9 bg-bg-100 border border-border  shadow-xl p-3 min-w-60 z-50">
               {/* Capa seleccionada actual */}
-              <div className="flex gap-2 font-medium mb-3 border border-border p-2 justify-center items-center rounded text-text-100">
+              <div className="flex bg-bg-200 gap-2 font-medium mb-3 border border-border p-2 justify-center items-center text-text-200">
                 {mapLayers[selectedLayer].icon}
                 {mapLayers[selectedLayer].name}
                 <IconRosetteDiscountCheck size={20} className="text-lime-300" />
@@ -47,8 +49,8 @@ const LayerSelector: React.FC<LayerSelectorProps> = ({
                   onClick={() => handleLayerSelect(key as MapLayer)}
                   className={`w-full flex items-center gap-3 px-4 py-3 text-left transition-colors rounded mb-1 ${
                     selectedLayer === key
-                      ? "bg-100 text-text-100"
-                      : "hover:bg-100 text-text-200 hover:text-text-100"
+                      ? "bg-bg-200 text-text-100"
+                      : "hover:bg-bg-200 text-text-200 hover:text-text-100"
                   }`}
                 >
                   {layer.icon}

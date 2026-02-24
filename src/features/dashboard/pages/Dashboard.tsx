@@ -1,7 +1,10 @@
 import BottomBar from "@/components/bars/BottomBar";
 import RightBar from "@/components/bars/RightBar";
 import BaseMap from "@/components/baseMap/components/BaseMap";
-import { BarChartWrapper } from "@/libs/recharts";
+import { useBreakpoint } from "@/hooks/useBreakpoints";
+import { LineChartWrapper } from "@/libs/recharts";
+import { useState } from "react";
+import { IconArrowNarrowLeft, IconX } from "@tabler/icons-react";
 
 // Ejemplo de uso
 const actividadPuertas = [
@@ -13,45 +16,74 @@ const actividadPuertas = [
 ];
 
 function Dashboard() {
+  const { isMobile } = useBreakpoint();
+  const [isOpenRightBar, setOpenRightBar] = useState(false);
   return (
-    <div className="w-full h-full grid grid-cols-12">
-      <div className="col-span-10 h-full flex flex-col">
-        <BaseMap>
-          {/* Contenido del mapa */}
-        </BaseMap>
+    <div
+      className={`w-full h-full  ${isMobile ? "flex flex-row" : "grid grid-cols-12"}`}
+    >
+      <div className="col-span-10 h-full flex flex-col w-full">
+        <BaseMap>{/* Contenido del mapa */}</BaseMap>
         <BottomBar
           title="Actividad de Puertas"
           overlays={<div className="bg-100 px-3">Overlays</div>}
         >
-          <BarChartWrapper
+          <LineChartWrapper
             data={actividadPuertas}
             dataKey={["aperturas", "cierres"]}
             xAxisKey="nombre"
             height={170}
             colors={["gray", "red"]}
             showGrid={true}
-            barSize={20}
             showLegend={true}
-            stacked={false}
-          />
+          ></LineChartWrapper>
         </BottomBar>
       </div>
-      <div className="col-span-2">
-        <RightBar
-          title="Detalles de Puertas"
-          overlays={
-            <div className="px-3 border-t border-b border-border">
-              <small>Overlays</small>
-            </div>
-          }
+      {!isMobile ? (
+        <RightBarDashboard />
+      ) : isOpenRightBar ? (
+        <RightBarDashboard setOpenRightBar={setOpenRightBar} />
+      ) : (
+        <button
+          className="absolute right-0 z-50 top-[50%] rounded-s-sm bg-brand-100 "
+          onClick={() => setOpenRightBar && setOpenRightBar(true)}
         >
-          <div>
-            <small>Contenido del RightBar</small>
-          </div>
-        </RightBar>
-      </div>
+          <IconArrowNarrowLeft size={24} stroke={1.5} />
+        </button>
+      )}
     </div>
   );
 }
+
+const RightBarDashboard = ({
+  setOpenRightBar,
+}: {
+  setOpenRightBar?: (isOpen: boolean) => void;
+}) => {
+  return (
+    <div className="relative col-span-2 z-50">
+      {setOpenRightBar && (
+        <button
+          onClick={() => setOpenRightBar && setOpenRightBar(false)}
+          className="absolute top-2 flex justify-center items-center right-2 z-50  outline outline-transparent"
+        >
+          <IconX size={20} stroke={1.5} />
+        </button>
+      )}
+      <RightBar
+        title="Detalles de Puertas"
+        overlays={
+          <div className="px-3 border-t border-b border-border">
+            <small>Overlays</small>
+          </div>
+        }
+      >
+        <div>
+          <small>Contenido del RightBar</small>
+        </div>
+      </RightBar>
+    </div>
+  );
+};
 
 export default Dashboard;

@@ -1,19 +1,24 @@
-import { IconChevronLeft, IconChevronRight } from "@tabler/icons-react";
+import { IconChevronLeft, IconChevronRight, IconX } from "@tabler/icons-react";
 import { useSidebar } from "../../../libs/zustand/hooks/useUI";
 import { useTheme } from "@/context/ThemeContext";
 import type { CompanyConfig, AppConfig } from "@/config/ConfigServer";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 import { useEffect, useState } from "react";
+import { useBreakpoint } from "@/hooks/useBreakpoints";
 
 function Sidebar({
   useCompany,
   useConfigApp,
+  isOpenSidebar,
+  setIsOpenSidebar,
 }: {
   useCompany: CompanyConfig;
   useConfigApp: AppConfig;
+  isOpenSidebar: boolean;
+  setIsOpenSidebar: React.Dispatch<React.SetStateAction<boolean>>;
 }) {
+  const { isMobile } = useBreakpoint();
   const { isCollapsed, setCollapsed } = useSidebar();
-
   const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
@@ -26,7 +31,7 @@ function Sidebar({
     return () => clearTimeout(timeout);
   }, [isCollapsed, isHovered, setCollapsed]);
 
-  return (
+  return !isMobile ? (
     <aside className={`relative bg-bg-100 min-h-screen w-19 z-10`}>
       <div
         className={`absolute top-0 left-0 h-full rounded-2xl bg-bg-100   ${
@@ -36,7 +41,7 @@ function Sidebar({
         onMouseLeave={() => setIsHovered(false)}
       >
         <button
-          className="absolute top-2.5 -right-8 text-text-300 outline outline-transparent border border-border shadow shadow-bg-400/30 p-0.5 hover:text-text-100 bg-bg-100 hover:bg-brand-100 rounded-full"
+          className="absolute top-3 -right-8 text-text-300 outline outline-transparent p-0.5 hover:text-text-100 bg-bg-100 hover:bg-brand-100 rounded-full"
           onClick={() => setCollapsed(!isCollapsed)}
         >
           {isCollapsed ? (
@@ -59,6 +64,26 @@ function Sidebar({
         <BottomSidebar isCollapsed={isCollapsed} />
       </div>
     </aside>
+  ) : (
+    isOpenSidebar && (
+      <div className="fixed inset-0 z-50 bg-bg-100">
+        <button
+          className="fixed top-2 right-2 bg-bg-100  z-50 p-2 text-text-300 outline outline-transparent "
+          onClick={() => setIsOpenSidebar(!isOpenSidebar)}
+        >
+          <IconX size={20} />
+        </button>
+        <TopSidebar
+          isCollapsed={isCollapsed}
+          useCompany={useCompany}
+          useConfigApp={useConfigApp}
+        />
+        <MenuNavigation
+          isCollapsed={!isCollapsed}
+          useConfigApp={useConfigApp}
+        />
+      </div>
+    )
   );
 }
 
@@ -92,7 +117,7 @@ const MenuNavigation = ({
             key={item.id}
             to={item.link}
             className={({ isActive }: { isActive: boolean }) => `
-              flex items-center mb-3 p-3 rounded hover:bg-bg-200 transition-all duration-300
+              flex items-center text-text-100 mb-3 p-3 rounded hover:bg-bg-200 transition-all duration-300
               ${_isCollapsed ? "justify-center" : "justify-start"}
               ${isActive ? "bg-bg-300 hover:bg-bg-200" : "text-text-100"}
             `}
@@ -126,19 +151,21 @@ const TopSidebar = ({
   return (
     <div
       className={`
-          w-full h-13 flex items-center overflow-hidden
+          w-full h-18 flex items-center overflow-hidden
           ${isCollapsed ? "px-2 py-2" : "px-5 py-2"}
           `}
     >
-      <img
-        src={
-          theme === "dark"
-            ? useCompany.LOGO_COMPANY_WHITE
-            : useCompany.LOGO_COMPANY_BLACK
-        }
-        alt={useCompany.NAME_COMPANY}
-        className="h-full "
-      />
+      <Link to="/">
+        <img
+          src={
+            theme === "dark"
+              ? useCompany.LOGO_COMPANY_WHITE
+              : useCompany.LOGO_COMPANY_BLACK
+          }
+          alt={useCompany.NAME_COMPANY}
+          className="h-full object-cover "
+        />
+      </Link>
       {!isCollapsed && (
         <span className="ml-2 truncate text-xs font-medium">
           {useConfigApp.NAME_APP}

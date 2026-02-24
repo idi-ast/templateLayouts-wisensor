@@ -60,7 +60,7 @@ export default function UserMenu() {
 
       {/* Dropdown Menu */}
       {isOpen && (
-        <div className="absolute right-0 top-full mt-2 w-64 bg-bg-100 border border-border rounded-lg shadow-lg z-50 overflow-hidden">
+        <div className="absolute right-0 top-full mt-2 w-64 bg-bg-100 border border-border rounded-lg shadow-lg z-500 overflow-hidden">
           {/* Header del menú */}
           <div className="px-4 py-3 border-b border-border bg-bg-200">
             <p className="text-sm font-semibold">{user?.name}</p>

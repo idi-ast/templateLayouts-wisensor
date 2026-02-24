@@ -1,10 +1,10 @@
-import { useAdminDashboard } from './useAdminDashboard';
+import { useAdminDashboard } from "./useAdminDashboard";
 import {
   IconUsers,
   IconBuilding,
   IconSettings,
-  IconLink
-} from '@tabler/icons-react';
+  IconLink,
+} from "@tabler/icons-react";
 
 export default function AdminDashboard() {
   const { stats, loading, error, loadStats } = useAdminDashboard();
@@ -13,8 +13,8 @@ export default function AdminDashboard() {
     return (
       <div className="flex items-center justify-center min-h-100">
         <div className="text-center">
-          <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-r-transparent motion-reduce:animate-[spin_1.5s_linear_infinite]"></div>
-          <p className="mt-2 text-sm text-gray-600">Cargando estadísticas...</p>
+          <div className="inline-block h-8 w-8 rounded-full border-4 border-solid border-current border-r-transparent animate-spin"></div>
+          <p className="mt-2 text-sm text-text-200">Cargando estadísticas...</p>
         </div>
       </div>
     );
@@ -22,7 +22,7 @@ export default function AdminDashboard() {
 
   if (error) {
     return (
-      <div className="rounded-lg bg-red-50 p-4 text-red-800">
+      <div className="rounded-lg bg-red-500 p-4 text-text-100">
         <h3 className="font-semibold">Error</h3>
         <p className="text-sm">{error}</p>
         <button
@@ -40,8 +40,10 @@ export default function AdminDashboard() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-2xl font-bold text-gray-900">Panel Administrativo</h2>
-        <p className="mt-1 text-sm text-gray-500">
+        <h2 className="text-2xl font-bold text-text-100">
+          Panel Administrativo
+        </h2>
+        <p className="mt-1 text-sm text-text-200">
           Estadísticas generales del sistema
         </p>
       </div>
@@ -74,9 +76,8 @@ export default function AdminDashboard() {
         />
       </div>
 
-      {/* Nuevos usuarios */}
-      <div className="rounded-lg bg-white p-6 shadow">
-        <h3 className="text-lg font-semibold text-gray-900">
+      <div className="rounded-lg bg-bg-100 p-6 shadow">
+        <h3 className="text-lg font-semibold text-text-100">
           Usuarios Recientes (últimos 7 días)
         </h3>
         <p className="mt-2 text-3xl font-bold text-blue-600">
@@ -84,24 +85,23 @@ export default function AdminDashboard() {
         </p>
       </div>
 
-      {/* Distribución de usuarios por compañía */}
-      <div className="rounded-lg bg-white p-6 shadow">
-        <h3 className="mb-4 text-lg font-semibold text-gray-900">
+      <div className="rounded-lg bg-bg-100 p-6 shadow">
+        <h3 className="mb-4 text-lg font-semibold text-text-100">
           Usuarios por Compañía (Top 10)
         </h3>
         <div className="space-y-3">
           {stats.users_by_company.map((item, index) => (
             <div key={index} className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 text-sm font-semibold text-gray-600">
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-bg-400 text-sm font-semibold text-text-400">
                   {index + 1}
                 </span>
-                <span className="font-medium text-gray-900">
+                <span className="font-medium text-text-100">
                   {item.company_name}
                 </span>
               </div>
-              <span className="rounded-full bg-blue-100 px-3 py-1 text-sm font-semibold text-blue-800">
-                {item.user_count} usuario{item.user_count !== 1 ? 's' : ''}
+              <span className="rounded-full bg-bg-300 px-3 py-1 text-sm font-semibold text-text-100">
+                {item.user_count} usuario{item.user_count !== 1 ? "s" : ""}
               </span>
             </div>
           ))}
@@ -120,18 +120,16 @@ interface StatCardProps {
 
 function StatCard({ title, value, icon, color }: StatCardProps) {
   return (
-    <div className="overflow-hidden rounded-lg bg-white shadow">
+    <div className="overflow-hidden rounded-lg bg-bg-100 shadow text-text-100">
       <div className="p-5">
         <div className="flex items-center">
-          <div className={`shrink-0 rounded-md ${color} p-3`}>
-            {icon}
-          </div>
+          <div className={`shrink-0 rounded-full ${color} p-3`}>{icon}</div>
           <div className="ml-5 w-0 flex-1">
             <dl>
-              <dt className="truncate text-sm font-medium text-gray-500">
+              <dt className="truncate text-sm font-medium text-text-200">
                 {title}
               </dt>
-              <dd className="text-3xl font-semibold text-gray-900">{value}</dd>
+              <dd className="text-3xl font-semibold text-text-100">{value}</dd>
             </dl>
           </div>
         </div>
