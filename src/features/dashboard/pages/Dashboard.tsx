@@ -2,7 +2,7 @@ import BottomBar from "@/components/bars/BottomBar";
 import RightBar from "@/components/bars/RightBar";
 import BaseMap from "@/components/baseMap/components/BaseMap";
 import { useBreakpoint } from "@/hooks/useBreakpoints";
-import { BarChartWrapper, LineChartWrapper } from "@/libs/recharts";
+import { LineChartWrapper } from "@/libs/recharts";
 import { useState } from "react";
 import { IconArrowNarrowLeft, IconX } from "@tabler/icons-react";
 

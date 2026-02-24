@@ -2,7 +2,7 @@ import { IconChevronLeft, IconChevronRight, IconX } from "@tabler/icons-react";
 import { useSidebar } from "../../../libs/zustand/hooks/useUI";
 import { useTheme } from "@/context/ThemeContext";
 import type { CompanyConfig, AppConfig } from "@/config/ConfigServer";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
 import { useEffect, useState } from "react";
 import { useBreakpoint } from "@/hooks/useBreakpoints";
 
@@ -151,19 +151,21 @@ const TopSidebar = ({
   return (
     <div
       className={`
-          w-full h-13 flex items-center overflow-hidden
+          w-full h-18 flex items-center overflow-hidden
           ${isCollapsed ? "px-2 py-2" : "px-5 py-2"}
           `}
     >
-      <img
-        src={
-          theme === "dark"
-            ? useCompany.LOGO_COMPANY_WHITE
-            : useCompany.LOGO_COMPANY_BLACK
-        }
-        alt={useCompany.NAME_COMPANY}
-        className="h-full "
-      />
+      <Link to="/">
+        <img
+          src={
+            theme === "dark"
+              ? useCompany.LOGO_COMPANY_WHITE
+              : useCompany.LOGO_COMPANY_BLACK
+          }
+          alt={useCompany.NAME_COMPANY}
+          className="h-full object-cover "
+        />
+      </Link>
       {!isCollapsed && (
         <span className="ml-2 truncate text-xs font-medium">
           {useConfigApp.NAME_APP}

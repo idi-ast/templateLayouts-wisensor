@@ -35,12 +35,14 @@ function Header({
         )}
         <div className="flex items-center gap-3">
           <div className="flex items-center justify-center gap-3 px-1 rounded-2xl">
-            <button
-              className="text-text-100"
-              onClick={() => setIsOpenSidebar(!isOpenSidebar)}
-            >
-              <IconCategory2 size={20} />
-            </button>
+            {isMobile && (
+              <button
+                className="text-text-100"
+                onClick={() => setIsOpenSidebar(!isOpenSidebar)}
+              >
+                <IconCategory2 size={20} />
+              </button>
+            )}
             <ThemeToggleButton />
             <NotificationDropdown />
           </div>
