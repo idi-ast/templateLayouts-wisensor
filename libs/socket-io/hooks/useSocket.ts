@@ -28,7 +28,6 @@ export function useSocket(options: UseSocketOptions = {}): SocketState {
   const [socketId, setSocketId] = useState<string | undefined>(socketClient.id);
 
   useEffect(() => {
-    // --- Handlers de eventos del ciclo de vida ---
 
     const handleConnect = () => {
       setStatus("connected");
