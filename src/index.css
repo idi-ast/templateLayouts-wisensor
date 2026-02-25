@@ -73,7 +73,7 @@
     /* Fondos (Backgrounds) */
     --bg-100: #060c0c;
     --bg-200: #1b1e24;
-    --bg-300: #2e323f;
+    --bg-300: #2a2c31;
     --bg-400: #dce0e4;
 
     /* Interacción */
@@ -157,9 +157,6 @@ body {
   height: 100vh;
   overflow-x: hidden;
 }
-
-
-
 
 /* Estilo general para el scroll */
 ::-webkit-scrollbar {

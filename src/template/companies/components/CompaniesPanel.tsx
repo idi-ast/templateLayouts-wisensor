@@ -49,48 +49,50 @@ export default function CompaniesPanel() {
       </div>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-        {/* Lista de compañías */}
-        <div className=" bg-bg-100 p-6 shadow">
+        <div className=" p-6 ">
           <h3 className="mb-4 text-lg font-semibold text-text-100">
             Lista de Compañías ({companies.length})
           </h3>
           <div className="space-y-3 max-h-150 overflow-y-auto">
-            {companies.map((company) => (
-              <div
-                key={company.id}
-                onClick={() => handleCompanyClick(company)}
-                className={`cursor-pointer rounded-lg border p-4 transition-colors ${
-                  selectedCompany?.id === company.id
-                    ? "border-blue-800 bg-blue-950"
-                    : "border-border hover:bg-bg-200"
-                }`}
-              >
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <p className="font-semibold text-text-100">
-                      {company.name}
-                    </p>
-                    <p className="text-sm text-text-200">RUT: {company.rut}</p>
-                    {company.email && (
-                      <p className="text-sm text-text-200">{company.email}</p>
-                    )}
-                  </div>
-                  <div className="ml-4 flex flex-col items-end space-y-1">
-                    <span className="rounded-full bg-blue-100 px-2 py-1 text-xs font-semibold text-blue-800">
-                      {company.total_users || 0} usuarios
-                    </span>
-                    <span className="rounded-full bg-purple-100 px-2 py-1 text-xs font-semibold text-purple-800">
-                      {company.total_services || 0} servicios
-                    </span>
+            {companies.map((company) => {
+              return (
+                <div
+                  key={company.id}
+                  onClick={() => handleCompanyClick(company)}
+                  className={`cursor-pointer  rounded-lg border p-4 transition-colors ${
+                    selectedCompany?.id === company.id
+                      ? `border-bg-400/15 bg-bg-300`
+                      : "border-border hover:bg-bg-100"
+                  }`}
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex-1 flex flex-col">
+                      <h3 className="font-semibold text-text-100">
+                        {company.name}
+                      </h3>
+                      <p className="text-sm text-text-200">
+                        RUT: {company.rut}
+                      </p>
+                      {company.email && (
+                        <p className="text-sm text-text-200">{company.email}</p>
+                      )}
+                    </div>
+                    <div className=" flex  items-center space-x-2">
+                      <span className="rounded-full border border-border px-2 py-1 text-xs font-semibold text-text-200">
+                        {company.total_users || 0} usuarios
+                      </span>
+                      <span className="rounded-full border border-border px-2 py-1 text-xs font-semibold text-text-200">
+                        {company.total_services || 0} servicios
+                      </span>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 
-        {/* Detalles de la compañía seleccionada */}
-        <div className=" bg-bg-100 p-6 shadow">
+        <div className="bg-bg-300  p-6 ">
           {selectedCompany ? (
             <>
               <h3 className="mb-4 text-lg font-semibold text-text-100">
@@ -99,11 +101,11 @@ export default function CompaniesPanel() {
 
               <div className="space-y-4">
                 {/* Información básica */}
-                <div className=" bg-bg-200 p-4">
+                <div className=" ">
                   <h4 className="font-semibold text-text-100 mb-2">
                     Información
                   </h4>
-                  <div className="space-y-2 text-sm">
+                  <div className="space-y-2 text-sm text-text-100">
                     <p>
                       <span className="font-medium">RUT:</span>{" "}
                       {selectedCompany.rut}
