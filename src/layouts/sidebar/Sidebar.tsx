@@ -32,10 +32,14 @@ function Sidebar({
   }, [isCollapsed, isHovered, setCollapsed]);
 
   return !isMobile ? (
-    <aside className={`relative bg-bg-100 min-h-screen w-19 z-10`}>
+    <aside
+      className={`relative bg-bg-100 min-h-screen w-19 z-10 `}
+    >
       <div
-        className={`absolute top-0 left-0 h-full rounded-2xl bg-bg-100   ${
-          isCollapsed ? "w-19" : "w-64"
+        className={`absolute top-0 left-0 h-full rounded-2xl bg-bg-100    ${
+          isCollapsed
+            ? "w-19 animate-slide-in-left"
+            : "w-64 animate-slide-in-right"
         } transition-all duration-200 ease-in-out flex flex-col justify-between`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}

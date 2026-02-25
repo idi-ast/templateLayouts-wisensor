@@ -211,7 +211,7 @@ const BaseMap: React.FC<BaseMapProps> = ({
   }, []);
 
   return (
-    <div className="w-full h-full relative">
+    <div className="w-full h-full relative animate-fade-in-up animate-duration-500">
       <ReactMapGL
         ref={mapRef}
         initialViewState={{
@@ -232,7 +232,7 @@ const BaseMap: React.FC<BaseMapProps> = ({
         fadeDuration={0}
         onLoad={handleMapLoad}
       >
-        <div className="absolute right-0 top-0 z-50 bg-bg-100 h-full flex flex-col gap-0.5 p-0.5">
+        <div className="absolute right-0 top-0 z-50 bg-bg-100 h-full flex flex-col gap-1 p-1">
           {/* Controles de navegación nativos */}
           {/* <NavigationControl position="top-right" showCompass={true} /> */}
 

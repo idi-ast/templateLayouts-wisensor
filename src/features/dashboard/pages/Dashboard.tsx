@@ -61,7 +61,7 @@ const RightBarDashboard = ({
   setOpenRightBar?: (isOpen: boolean) => void;
 }) => {
   return (
-    <div className="relative col-span-2 z-50">
+    <div className="relative col-span-2 z-50 ">
       {setOpenRightBar && (
         <button
           onClick={() => setOpenRightBar && setOpenRightBar(false)}

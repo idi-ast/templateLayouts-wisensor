@@ -13,7 +13,7 @@ const CustomZoomControl: React.FC<CustomZoomControlProps> = React.memo(
     }, [mapRef]);
 
     return (
-      <div className="flex flex-col gap-0.5">
+      <div className="flex flex-col gap-1">
         <button
           onClick={handleZoomIn}
           className="bg-bg-300 gap-2 text-text-100 hover:bg-bg-200 h-8 w-8 flex justify-center items-center transition-all"

@@ -30,11 +30,11 @@ const LayerSelector: React.FC<LayerSelectorProps> = ({
           <>
             {/* Overlay para cerrar el menú al hacer clic fuera */}
             <div
-              className="fixed inset-0 z-40"
+              className="fixed inset-0 z-40 "
               onClick={() => setShowMenu(false)}
             />
 
-            <div className="absolute top-0 max-h-150 overflow-y-scroll right-9 bg-bg-100 border border-border  shadow-xl p-3 min-w-60 z-50">
+            <div className="absolute top-0 max-h-150 animate-fade-in-left animate-duration-100 overflow-y-scroll right-9 bg-bg-100 border border-border  shadow-xl p-3 min-w-60 z-50">
               {/* Capa seleccionada actual */}
               <div className="flex bg-bg-200 gap-2 font-medium mb-3 border border-border p-2 justify-center items-center text-text-200">
                 {mapLayers[selectedLayer].icon}

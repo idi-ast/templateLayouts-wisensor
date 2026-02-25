@@ -137,7 +137,7 @@ export default function NotificationDropdown() {
         menuClassName="bg-bg-100 border border-border shadow-xl"
         align="right"
       >
-        <div className="w-80">
+        <div className="w-80 ">
           {/* Header */}
           <div className="flex items-center justify-between px-4 py-3 border-b border-border">
             <h3 className="font-semibold text-sm">Notificaciones</h3>

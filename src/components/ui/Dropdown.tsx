@@ -103,9 +103,8 @@ export const Dropdown: React.FC<DropdownProps> = ({
       {isOpen && (
         <div
           className={`
-            absolute mt-2 z-50
+            absolute mt-4.5 z-50 animate-fade-in-down animate-duration-300
             ${alignmentStyles[align]}
-            animate-dropdown-enter
           `}
           style={{
             minWidth: "max-content",
