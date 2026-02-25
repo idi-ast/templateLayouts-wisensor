@@ -211,7 +211,7 @@ const BaseMap: React.FC<BaseMapProps> = ({
   }, []);
 
   return (
-    <div className="w-full h-full relative ">
+    <div className="w-full h-full relative">
       <ReactMapGL
         ref={mapRef}
         initialViewState={{
