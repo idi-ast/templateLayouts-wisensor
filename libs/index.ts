@@ -34,3 +34,6 @@ export * from "./sonner";
 
 // TanStack Table - Tablas
 export * from "./tanstack-table";
+
+// Socket.IO - WebSocket en tiempo real
+export * from "./socket-io";
