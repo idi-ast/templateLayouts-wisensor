@@ -57,7 +57,7 @@ export default function UserProfilePanel() {
           )}
         </div>
 
-        <div className="mt-5 py-5 grid grid-cols-1 gap-4 border-t border-border">
+        <div className="mt-5 py-5 grid grid-cols-1 gap-4 border-t border-border-200">
           <div>
             <label className="text-sm font-medium text-text-200">Nombre</label>
             <p className="mt-1 text-base font-semibold text-text-100">
@@ -100,7 +100,7 @@ export default function UserProfilePanel() {
           <div className="col-span-2 flex justify-center items-center py-5">
             <small className="text-text-200">Resumen Rápido</small>
           </div>
-          <div className="flex items-center p-6 border border-border rounded-2xl">
+          <div className="flex items-center p-6 border border-border-200 rounded-2xl">
             <div className="text-3xl">
               <IconBuildingSkyscraper size={25} />
             </div>
@@ -111,7 +111,7 @@ export default function UserProfilePanel() {
               </p>
             </div>
           </div>
-          <div className="flex items-center p-6 border border-border rounded-2xl">
+          <div className="flex items-center p-6 border border-border-200 rounded-2xl">
             <div className="text-3xl">
               <IconSettings size={25} />
             </div>
@@ -137,7 +137,7 @@ export default function UserProfilePanel() {
                   style={{
                     backgroundColor: companyConfig?.color_theme,
                   }}
-                  className="flex items-center  rounded justify-between  border border-border p-4 hover:bg-bg-200"
+                  className="flex items-center  rounded justify-between  border border-border-200 p-4 hover:bg-bg-200"
                 >
                   <div>
                     <h2 className="font-bold text-text-100">{company.name} </h2>

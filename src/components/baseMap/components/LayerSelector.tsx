@@ -20,8 +20,8 @@ const LayerSelector: React.FC<LayerSelectorProps> = ({
         <button
           onClick={() => setShowMenu(!showMenu)}
           className={`
-            ${showMenu ? "bg-bg-100 text-text-200 " : "bg-bg-300"}
-             gap-1 text-text-100 hover:bg-bg-200 h-8 w-8 flex justify-center items-center transition-all`}
+            ${showMenu ? "bg-bg-100 text-text-200 " : "bg-bg-200"}
+             gap-1 text-text-100 hover:bg-bg-300 rounded h-8 w-8 flex justify-center items-center transition-all`}
         >
           <IconMapCog size={20} />
         </button>

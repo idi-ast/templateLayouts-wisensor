@@ -12,7 +12,7 @@ function RightBar({
   children,
 }: RightBarProps) {
   return (
-    <div className="animate-slide-in-right w-full bg-bg-100 text-text-100  h-full border-s border-s-border flex flex-col p-1">
+    <div className="animate-slide-in-right w-full bg-bg-300 text-text-100  h-full border-s border-s-border flex flex-col p-1">
       <div className="p-5 bg-bg-100 rounded-xl ">
         <h3>{title}</h3>
         <h5>{subTitle}</h5>

@@ -32,11 +32,9 @@ function Sidebar({
   }, [isCollapsed, isHovered, setCollapsed]);
 
   return !isMobile ? (
-    <aside
-      className={`relative bg-bg-100 min-h-screen w-19 z-10 `}
-    >
+    <aside className={`relative bg-bg-200 min-h-screen w-19 z-10 `}>
       <div
-        className={`absolute top-0 left-0 h-full rounded-2xl bg-bg-100    ${
+        className={`absolute top-0 left-0 h-full rounded-2xl bg-bg-200    ${
           isCollapsed
             ? "w-19 animate-slide-in-left"
             : "w-64 animate-slide-in-right"
@@ -159,17 +157,23 @@ const TopSidebar = ({
           ${isCollapsed ? "px-2 py-2" : "px-5 py-2"}
           `}
     >
-      <Link to="/">
-        <img
-          src={
-            theme === "dark"
-              ? useCompany.LOGO_COMPANY_WHITE
-              : useCompany.LOGO_COMPANY_BLACK
-          }
-          alt={useCompany.NAME_COMPANY}
-          className="h-full object-cover "
-        />
-      </Link>
+      <div
+        className={` h-full flex items-center justify-center
+        ${isCollapsed ? "w-full" : "px-5 py-2"}
+        `}
+      >
+        <Link to="/">
+          <img
+            src={
+              theme === "dark"
+                ? useCompany.LOGO_COMPANY_WHITE
+                : useCompany.LOGO_COMPANY_BLACK
+            }
+            alt={useCompany.NAME_COMPANY}
+            className="h-8 object-cover "
+          />
+        </Link>
+      </div>
       {!isCollapsed && (
         <span className="ml-2 truncate text-xs font-medium">
           {useConfigApp.NAME_APP}

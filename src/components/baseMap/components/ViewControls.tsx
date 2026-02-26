@@ -48,28 +48,28 @@ const ViewControls: React.FC<ViewControlsProps> = ({
     <div className="flex flex-col gap-1">
       <button
         onClick={setTopView}
-        className="bg-bg-300 gap-2 text-text-100 hover:bg-bg-200 h-8 w-8 flex justify-center items-center transition-all"
+        className="bg-bg-200 gap-2 text-text-100 rounded hover:bg-bg-300 h-8 w-8 flex justify-center items-center transition-all"
         title="Vista superior (2D)"
       >
         <IconMap size={20} />
       </button>
       <button
         onClick={set3DView}
-        className="bg-bg-300 gap-2 text-text-100 hover:bg-bg-200 h-8 w-8 flex justify-center items-center transition-all"
+        className="bg-bg-200 gap-2 text-text-100 rounded hover:bg-bg-300 h-8 w-8 flex justify-center items-center transition-all"
         title="Vista 3D"
       >
         <Icon3dCubeSphere size={20} />
       </button>
       <button
         onClick={resetNorth}
-        className="bg-bg-300 gap-2 text-text-100 hover:bg-bg-200 h-8 w-8 flex justify-center items-center transition-all"
+        className="bg-bg-200 gap-2 text-text-100 rounded hover:bg-bg-300 h-8 w-8 flex justify-center items-center transition-all"
         title="Orientar al norte"
       >
         <IconCompass size={20} />
       </button>
       <button
         onClick={resetView}
-        className="bg-bg-300 gap-2 text-text-100 hover:bg-bg-200 h-8 w-8 flex justify-center items-center transition-all"
+        className="bg-bg-200 gap-2 text-text-100 rounded hover:bg-bg-300 h-8 w-8 flex justify-center items-center transition-all"
         title="Resetear vista"
       >
         <IconRefresh size={20} />

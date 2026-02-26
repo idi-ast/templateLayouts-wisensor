@@ -16,7 +16,7 @@ function Header({
 }) {
   const { isMobile } = useBreakpoint();
   return (
-    <header className="max-w-7xl h-10 mx-auto rounded-xl shadow bg-bg-100/70 backdrop-blur text-text-100 w-full z-60 flex items-center relative">
+    <header className="max-w-7xl h-10 mx-auto rounded-xl shadow bg-bg-100  text-text-100 w-full z-60 flex items-center relative">
       <div className="w-full flex items-center justify-between ">
         <div className="px-5 flex gap-1">
           <h4 className="font-bold">
@@ -27,8 +27,8 @@ function Header({
           </h4>
         </div>
         {!isMobile && (
-          <div className="absolute left-[50%] -translate-x-1/2">
-            <span className="font-extralight text-text-100">
+          <div className="absolute left-[50%] top-245 -translate-x-1/2">
+            <span className="text-2xl  text-text-100 font-secondary capitalize">
               {useConfigApp.NAME_APP}
             </span>
           </div>
@@ -46,7 +46,7 @@ function Header({
             <ThemeToggleButton />
             <NotificationDropdown />
           </div>
-          <div className="border-s border-border/50  px-1">
+          <div className="border-s border-border/50  px-0.5">
             <UserMenu />
           </div>
         </div>

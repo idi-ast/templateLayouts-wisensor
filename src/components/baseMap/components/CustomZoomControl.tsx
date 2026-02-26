@@ -16,14 +16,14 @@ const CustomZoomControl: React.FC<CustomZoomControlProps> = React.memo(
       <div className="flex flex-col gap-1">
         <button
           onClick={handleZoomIn}
-          className="bg-bg-300 gap-2 text-text-100 hover:bg-bg-200 h-8 w-8 flex justify-center items-center transition-all"
+          className="bg-bg-200 gap-2 text-text-100 rounded hover:bg-bg-300 h-8 w-8 flex justify-center items-center transition-all"
           title="Acercar"
         >
           <IconPlus size={20} />
         </button>
         <button
           onClick={handleZoomOut}
-          className="bg-bg-300 gap-2 text-text-100 hover:bg-bg-200 h-8 w-8 flex justify-center items-center transition-all"
+          className="bg-bg-200 gap-2 text-text-100 rounded hover:bg-bg-300 h-8 w-8 flex justify-center items-center transition-all"
           title="Alejar"
         >
           <IconMinus size={20} />

@@ -73,7 +73,7 @@ const RightBarDashboard = ({
       <RightBar
         title="Detalles de Puertas"
         overlays={
-          <div className="px-3 border-t border-b border-border">
+          <div className="px-3 py-4  border-b border-border-200">
             <small>Overlays</small>
           </div>
         }

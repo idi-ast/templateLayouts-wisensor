@@ -39,9 +39,9 @@ export default function UserMenu() {
       {/* Trigger */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 pe-2 ps-0.5  hover:bg-bg-300 rounded-xl transition-colors"
+        className="flex items-center gap-2 pe-2 ps-0.5 bg-bg-200  hover:bg-bg-300 rounded-lg transition-colors"
       >
-        <div className="w-8 h-8 bg-bg-100 rounded-xl flex justify-center items-center">
+        <div className="w-8 h-8 bg-bg-100 rounded-lg flex justify-center items-center">
           <span className="font-bold text-text-100">
             {user?.name?.charAt(0).toUpperCase() || "?"}
           </span>

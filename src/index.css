@@ -1,5 +1,7 @@
 @import "tailwindcss";
-@import 'tailwind-animations';
+@import "tailwind-animations";
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
 :root {
   font-family: "Switzer", sans-serif;
 
@@ -42,6 +44,7 @@
   --color-text-400: var(--text-400);
   /* Bordes */
   --color-border: var(--border-100);
+  --color-border-200: var(--border-200);
 }
 
 @layer base {
@@ -61,19 +64,20 @@
 
     /* Textos */
     --text-100: #1f2937;
-    --text-200: #4b5563;
+    --text-200: #0a2955;
     --text-300: #9ca3af;
     --text-400: #f2f2f2;
 
     /* Bordes y Separadores */
     --border-100: #dedfdf;
+    --border-200: #e2e8f0;
   }
 
   .dark {
     /* Fondos (Backgrounds) */
     --bg-100: #060c0c;
-    --bg-200: #1b1e24;
-    --bg-300: #2a2c31;
+    --bg-200: #292c33;
+    --bg-300: #373a42;
     --bg-400: #dce0e4;
 
     /* Interacción */
@@ -81,7 +85,7 @@
 
     /* Colores de Marca y Acción */
     --brand-100: #e51616;
-    --brand-200: #e02c2c;
+    --brand-200: #00ffe5;
 
     /* Textos */
     --text-100: #f9fafb;
@@ -90,10 +94,10 @@
     --text-400: #1f2937;
 
     /* Bordes y Separadores */
-    --border-100: #272a34;
+    --border-100: #2a2c37;
+    --border-200: #4e525e;
   }
   ˝ body {
-    font-family: "Poppins", sans-serif;
     background-color: var(--bg-100);
     color: var(--text-100) !important;
     transition:
@@ -156,6 +160,15 @@ body {
   margin: 0;
   height: 100vh;
   overflow-x: hidden;
+  /* font-family: "Raleway", sans-serif; */
+  font-family: "Outfit", sans-serif;
+  /* font-family: "Libre Franklin", sans-serif; */
+  /* font-family: "Space Grotesk", sans-serif; */
+}
+
+.font-secondary{
+    font-family: "La Belle Aurore", cursive;
+
 }
 
 /* Estilo general para el scroll */

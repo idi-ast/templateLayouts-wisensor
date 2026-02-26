@@ -211,7 +211,7 @@ const BaseMap: React.FC<BaseMapProps> = ({
   }, []);
 
   return (
-    <div className="w-full h-full relative animate-fade-in-up animate-duration-500">
+    <div className="w-full h-full relative animate-fade-in-down animate-duration-500">
       <ReactMapGL
         ref={mapRef}
         initialViewState={{
@@ -232,26 +232,28 @@ const BaseMap: React.FC<BaseMapProps> = ({
         fadeDuration={0}
         onLoad={handleMapLoad}
       >
-        <div className="absolute right-0 top-0 z-50 bg-bg-100 h-full flex flex-col gap-1 p-1">
-          {/* Controles de navegación nativos */}
-          {/* <NavigationControl position="top-right" showCompass={true} /> */}
+        <div className="absolute right-0 top-0 z-50 bg-bg-100 h-full flex flex-col gap-1 p-0.5 py-1">
+          <div className="flex flex-col p-0.5 gap-1 border border-border rounded py-1">
+            {/* Controles de navegación nativos */}
+            {/* <NavigationControl position="top-right" showCompass={true} /> */}
 
-          {/* Selector de capas */}
-          <LayerSelector
-            selectedLayer={selectedLayer}
-            onLayerChange={handleLayerChange}
-            mapLayers={mapLayers}
-          />
+            {/* Selector de capas */}
+            <LayerSelector
+              selectedLayer={selectedLayer}
+              onLayerChange={handleLayerChange}
+              mapLayers={mapLayers}
+            />
 
-          {/* Controles de vista */}
-          <ViewControls
-            mapRef={mapRef}
-            initialCenter={initialCenter}
-            initialZoom={initialZoom}
-          />
+            {/* Controles de vista */}
+            <ViewControls
+              mapRef={mapRef}
+              initialCenter={initialCenter}
+              initialZoom={initialZoom}
+            />
 
-          {/* Controles de zoom personalizados */}
-          <CustomZoomControl mapRef={mapRef} />
+            {/* Controles de zoom personalizados */}
+            <CustomZoomControl mapRef={mapRef} />
+          </div>
 
           <div className="flex justify-center items-center h-full">
             <span className="[writing-mode:vertical-rl] truncate rotate-180 text-base tracking-[0.3em] text-text-300 font-light">
