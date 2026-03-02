@@ -34,16 +34,16 @@ function Sidebar({
   return !isMobile ? (
     <aside className={`relative bg-bg-200 min-h-screen w-19 z-10 `}>
       <div
-        className={`absolute top-0 left-0 h-full rounded-2xl bg-bg-200    ${
+        className={`absolute top-0 left-0 h-full rounded-e-2xl    ${
           isCollapsed
             ? "w-19 animate-slide-in-left"
-            : "w-64 animate-slide-in-right"
+            : "w-64  bg-bg-100"
         } transition-all duration-200 ease-in-out flex flex-col justify-between`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
         <button
-          className="absolute top-3 -right-8 text-text-300 outline outline-transparent p-0.5 hover:text-text-100 bg-bg-100 hover:bg-brand-100 rounded-full"
+          className="absolute top-3 -right-10 text-text-300 outline outline-transparent p-0.5 hover:text-text-100 bg-bg-100 hover:bg-brand-100 rounded-full"
           onClick={() => setCollapsed(!isCollapsed)}
         >
           {isCollapsed ? (
@@ -52,16 +52,18 @@ function Sidebar({
             <IconChevronLeft size={20} />
           )}
         </button>
-        <div className="w-full h-full">
-          <TopSidebar
-            isCollapsed={isCollapsed}
-            useCompany={useCompany}
-            useConfigApp={useConfigApp}
-          />
-          <MenuNavigation
-            isCollapsed={isCollapsed}
-            useConfigApp={useConfigApp}
-          />
+        <div className="w-full h-full p-1">
+          <div className="bg-bg-100 rounded-lg">
+            <TopSidebar
+              isCollapsed={isCollapsed}
+              useCompany={useCompany}
+              useConfigApp={useConfigApp}
+            />
+            <MenuNavigation
+              isCollapsed={isCollapsed}
+              useConfigApp={useConfigApp}
+            />
+          </div>
         </div>
         <BottomSidebar isCollapsed={isCollapsed} />
       </div>
@@ -111,7 +113,9 @@ const MenuNavigation = ({
   useConfigApp: AppConfig;
 }) => {
   return (
-    <div className={` ${_isCollapsed ? "mt-4 px-1" : "mt-4 px-3"} `}>
+    <div
+      className={` ${_isCollapsed ? "mt-4  p-1 " : "mt-4 p-1 mx-1 bg-bg-100 rounded-lg"} `}
+    >
       {_useConfigApp.NAVIGATION_APP.map((item) => {
         const Icon = item.icon;
         return (
@@ -119,7 +123,7 @@ const MenuNavigation = ({
             key={item.id}
             to={item.link}
             className={({ isActive }: { isActive: boolean }) => `
-              flex items-center text-text-100 mb-3 p-3 rounded hover:bg-bg-200 transition-all duration-300
+              flex items-center text-text-100  p-3 rounded hover:bg-bg-200 transition-all duration-300
               ${_isCollapsed ? "justify-center" : "justify-start"}
               ${isActive ? "bg-bg-300 hover:bg-bg-200" : "text-text-100"}
             `}

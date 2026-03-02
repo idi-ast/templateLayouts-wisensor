@@ -17,7 +17,7 @@ function Template() {
           isOpenSidebar={isOpenSidebar}
           setIsOpenSidebar={setOpenSidebar}
         />
-        <div className="flex-1 flex flex-col z-0 bg-bg-200 px-2 pb-2">
+        <div className="flex-1 flex flex-col z-0 bg-bg-200  pe-2 pb-2">
           <div className="relative bg-bg-200 p-1 animate-slide-in-top z-60">
             <Header
               useConfigApp={useConfigApp}
