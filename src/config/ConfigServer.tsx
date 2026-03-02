@@ -96,7 +96,7 @@ export const configServer = () => {
       component: Dashboard,
       target: false,
       state: true,
-    },
+    }
     // Agregar aquí más rutas específicas del sistema...
   ];
 

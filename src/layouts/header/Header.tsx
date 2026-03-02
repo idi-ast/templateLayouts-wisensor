@@ -19,7 +19,7 @@ function Header({
     <header className="max-w-7xl h-10 mx-auto rounded-xl shadow bg-bg-100  text-text-100 w-full z-60 flex items-center relative">
       <div className="w-full flex items-center justify-between ">
         <div className="px-5 flex gap-1">
-          <h4 className="font-bold">
+          <h4 className="font-bold text-text-200">
             <span className="text-brand-100">
               {useConfigApp.PROVIDER_APP.slice(0, 2)}
             </span>
@@ -27,8 +27,8 @@ function Header({
           </h4>
         </div>
         {!isMobile && (
-          <div className="absolute left-[50%] top-245 -translate-x-1/2">
-            <span className="text-2xl  text-text-100 font-secondary capitalize">
+          <div className="absolute left-[50%] top-2 -translate-x-1/2">
+            <span className="text-2xl  text-text-200 font-secondary capitalize">
               {useConfigApp.NAME_APP}
             </span>
           </div>
