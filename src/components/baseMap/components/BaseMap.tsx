@@ -211,7 +211,7 @@ const BaseMap: React.FC<BaseMapProps> = ({
   }, []);
 
   return (
-    <div className="w-full h-full relative animate-fade-in-down animate-duration-500">
+    <div className="w-full p-2 h-full relative animate-fade-in-down animate-duration-500">
       <ReactMapGL
         ref={mapRef}
         initialViewState={{

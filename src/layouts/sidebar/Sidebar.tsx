@@ -5,6 +5,7 @@ import type { CompanyConfig, AppConfig } from "@/config/ConfigServer";
 import { Link, NavLink } from "react-router";
 import { useEffect, useState } from "react";
 import { useBreakpoint } from "@/hooks/useBreakpoints";
+import LineGradientWhite from "@/components/ui/LineGradientWhite";
 
 function Sidebar({
   useCompany,
@@ -25,25 +26,24 @@ function Sidebar({
     let timeout: ReturnType<typeof setTimeout>;
     if (!isCollapsed && !isHovered) {
       timeout = setTimeout(() => {
-        setCollapsed(true);
+        setCollapsed(true); // Cambiar a true para que se colapse automáticamente después de 1 segundo de inactividad
       }, 1000);
     }
     return () => clearTimeout(timeout);
   }, [isCollapsed, isHovered, setCollapsed]);
 
   return !isMobile ? (
-    <aside className={`relative bg-bg-200 min-h-screen w-19 z-10 `}>
+    <aside className={`relative bg-bg-100 min-h-screen w-19 z-10 `}>
       <div
-        className={`absolute top-0 left-0 h-full rounded-e-2xl    ${
-          isCollapsed
-            ? "w-19 animate-slide-in-left"
-            : "w-64  bg-bg-100"
-        } transition-all duration-200 ease-in-out flex flex-col justify-between`}
+        className={`absolute top-0 left-0 h-full border-e border-border      
+          ${
+            isCollapsed ? "w-19 animate-slide-in-left" : "w-64  bg-bg-100 "
+          } transition-all duration-200 ease-in-out flex flex-col justify-between`}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
         <button
-          className="absolute top-3 -right-10 text-text-300 outline outline-transparent p-0.5 hover:text-text-100 bg-bg-100 hover:bg-brand-100 rounded-full"
+          className="absolute top-3 -right-10 text-text-300 hover:text-text-100 outline outline-transparent p-0.5 bg-linear-to-b from-bg-100 to-bg-300 border-t border-t-white/20 shadow-lg shadow-bg-100 rounded-full"
           onClick={() => setCollapsed(!isCollapsed)}
         >
           {isCollapsed ? (
@@ -53,7 +53,7 @@ function Sidebar({
           )}
         </button>
         <div className="w-full h-full p-1">
-          <div className="bg-bg-100 rounded-lg">
+          <div className="bg-bg-100 ">
             <TopSidebar
               isCollapsed={isCollapsed}
               useCompany={useCompany}
@@ -116,27 +116,35 @@ const MenuNavigation = ({
     <div
       className={` ${_isCollapsed ? "mt-4  p-1 " : "mt-4 p-1 mx-1 bg-bg-100 rounded-lg"} `}
     >
+      <div className="p-1">
+        <h4 className="text-text-300 text-xs tracking-wider ">MENU</h4>
+      </div>
       {_useConfigApp.NAVIGATION_APP.map((item) => {
         const Icon = item.icon;
         return (
-          <NavLink
-            key={item.id}
-            to={item.link}
-            className={({ isActive }: { isActive: boolean }) => `
-              flex items-center text-text-100  p-3 rounded hover:bg-bg-200 transition-all duration-300
+          <div className="relative">
+            <div className="absolute w-3 h-3 bg-blue-500 -right-1 top-1/2 -translate-y-1/2 rounded-full blur-xs"></div>
+            <div className="absolute w-3 h-3 bg-blue-600 right-0 top-1/2 -translate-y-1/2 rounded-full "></div>
+            <LineGradientWhite />
+            <NavLink
+              key={item.id}
+              to={item.link}
+              className={({ isActive }: { isActive: boolean }) => `
+               relative flex  items-center text-text-200  py-1 px-2 rounded-xl hover:bg-bg-200 transition-all duration-300
               ${_isCollapsed ? "justify-center" : "justify-start"}
-              ${isActive ? "bg-bg-300 hover:bg-bg-200" : "text-text-100"}
+              ${isActive ? "bg-linear-to-r backdrop-blur from-bg-300 hover:bg-bg-200" : "text-text-100"}
             `}
-            target={item.target ? "_blank" : "_self"}
-            rel="noreferrer"
-          >
-            <span>
-              <Icon size={22} stroke={1.5} />
-            </span>
-            {!_isCollapsed && (
-              <span className="ml-2 truncate">{item.name}</span>
-            )}
-          </NavLink>
+              target={item.target ? "_blank" : "_self"}
+              rel="noreferrer"
+            >
+              <span>
+                <Icon size={22} stroke={2} />
+              </span>
+              {!_isCollapsed && (
+                <span className="ml-2 truncate">{item.name}</span>
+              )}
+            </NavLink>
+          </div>
         );
       })}
     </div>
@@ -157,7 +165,7 @@ const TopSidebar = ({
   return (
     <div
       className={`
-          w-full h-18 flex items-center overflow-hidden
+          w-full h-18 border-b border-border flex items-center overflow-hidden
           ${isCollapsed ? "px-2 py-2" : "px-5 py-2"}
           `}
     >

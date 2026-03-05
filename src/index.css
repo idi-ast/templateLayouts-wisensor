@@ -75,17 +75,16 @@
 
   .dark {
     /* Fondos (Backgrounds) */
-    --bg-100: #060c0c;
-    --bg-200: #292c33;
+    --bg-100: #131414;
+    --bg-200: #1f2127;
     --bg-300: #373a42;
     --bg-400: #dce0e4;
 
     /* Interacción */
-    --bg-hover: #101a1a;
 
     /* Colores de Marca y Acción */
     --brand-100: #e51616;
-    --brand-200: #00ffe5;
+    --brand-200: #006aff;
 
     /* Textos */
     --text-100: #f9fafb;

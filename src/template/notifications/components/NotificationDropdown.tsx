@@ -74,7 +74,7 @@ function NotificationItem({
             <span className="text-[10px] text-text-200">
               {formatTime(notification.createdAt)}
             </span>
-            
+
             {/* Acciones (visibles en hover) */}
             <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
               {isUnread && (
@@ -121,12 +121,16 @@ export default function NotificationDropdown() {
   const visibleNotifications = getFilteredNotifications().slice(0, 5);
 
   return (
-    <div className="relative">
+    <div className="relative bg-linear-to-b from-bg-100 to-bg-300 border-t border-t-white/20 shadow-lg shadow-bg-100  transition-all duration-300 rounded-full h-6 w-6 flex items-center justify-center ">
       <Dropdown
         id="notifications"
         trigger={
-          <div className="relative top-1 transition-colors cursor-pointer">
-            <IconBell size={20} />
+          <div className="relative  transition-colors cursor-pointer ">
+            <IconBell
+              size={16}
+              stroke={2}
+              className="text-text-100/60 animate-fade-in-up animate-delay-100"
+            />
             {unreadCount > 0 && (
               <span className="absolute -top-0.5 -right-2 px-1 bg-red-500 rounded-full flex justify-center items-center text-text-100 text-[10px] font-semibold">
                 {unreadCount > 9 ? "9+" : unreadCount}

@@ -9,13 +9,13 @@ const ThemeToggleButton: React.FC = () => {
   return (
     <button
       onClick={toggleTheme}
-      className="rounded-full transition-colors duration-200 hover:opacity-85  cursor-pointer"
+      className="text-text-300 w-6 h-6 flex justify-center items-center transition-all duration-300 outline outline-transparent p-0.5 bg-linear-to-b from-bg-100 to-bg-300 border-t border-t-white/20 shadow-lg shadow-bg-100 rounded-full"
       title="Cambiar Tema"
     >
       {theme === "dark" ? (
-        <IconSun size={20} className="text-yellow-400" />
+        <IconSun size={17} className="text-yellow-400 hover:text-text-100" />
       ) : (
-        <IconMoon size={20} className="text-text-100" />
+        <IconMoon size={17} className="text-text-300" />
       )}
     </button>
   );

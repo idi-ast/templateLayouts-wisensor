@@ -7,6 +7,7 @@ import {
   ADMIN_MENU_ITEMS,
   LOGOUT_ITEM,
 } from "@/template/config";
+import LineGradientWhite from "@/components/ui/LineGradientWhite";
 
 export default function UserMenu() {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,10 +37,12 @@ export default function UserMenu() {
 
   return (
     <div className="relative" ref={menuRef}>
+      <LineGradientWhite top="" height="0.05rem" opacity="1" />
+
       {/* Trigger */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 pe-2 ps-0.5 bg-bg-200  hover:bg-bg-300 rounded-lg transition-colors"
+        className="flex items-center gap-2 pe-2 ps-0.5 bg-bg-200   shadow-sm shadow-bg-100  hover:bg-bg-300 rounded-lg transition-colors"
       >
         <div className="w-8 h-8 bg-bg-100 rounded-lg flex justify-center items-center">
           <span className="font-bold text-text-100">
