@@ -51,6 +51,11 @@ const BaseMap: React.FC<BaseMapProps> = ({
 
   const mapLayers = useMemo<Record<MapLayer, MapLayerConfig>>(
     () => ({
+      ast: {
+        name: "Mapa de AST",
+        icon: <IconMap size={20} />,
+        style: "mapbox://styles/try4life/cmmf2nmlk00nb01qrhf2h9m5f",
+      },
       street: {
         name: "Mapa de Calles",
         icon: <IconMap size={20} />,
@@ -215,16 +220,16 @@ const BaseMap: React.FC<BaseMapProps> = ({
       style={{
         padding: 0.6,
       }}
-      className="w-full h-full flex-1 bg-bg-100  overflow-hidden relative animate-fade-in-down animate-duration-500 flex justify-center items-center"
+      className="w-full h-full flex-1 bg-bg-100   overflow-hidden rounded relative animate-fade-in-down animate-duration-500 flex justify-center items-center"
     >
-      <div className="absolute w-full h-full -bg-linear-120 from-slate-500 to-brand-200/23"></div>
+      <div className="absolute w-full h-full -bg-linear-120 rounded from-slate-700 to-brand-200/23"></div>
       <ReactMapGL
         ref={mapRef}
         initialViewState={{
           longitude: initialCenter.longitude,
           latitude: initialCenter.latitude,
           zoom: initialZoom,
-          pitch: 65,
+          pitch: 0,
           bearing: 0,
         }}
         mapboxAccessToken={MAPBOX_TOKEN}
@@ -238,29 +243,20 @@ const BaseMap: React.FC<BaseMapProps> = ({
         fadeDuration={0}
         onLoad={handleMapLoad}
       >
-        {/* Contenido adicional (markers, layers, etc.) */}
         {children}
       </ReactMapGL>
-      <div className="relative h-full  z-50 bg-bg-100  flex flex-col gap-1 p-1">
+      <div className="relative h-full  z-50 bg-bg-100  flex flex-col gap-1 p-1 rounded">
         <div className="flex flex-col p-0.5 gap-1 border border-border rounded py-1">
-          {/* Controles de navegación nativos */}
-          {/* <NavigationControl position="top-right" showCompass={true} /> */}
-
-          {/* Selector de capas */}
           <LayerSelector
             selectedLayer={selectedLayer}
             onLayerChange={handleLayerChange}
             mapLayers={mapLayers}
           />
-
-          {/* Controles de vista */}
           <ViewControls
             mapRef={mapRef}
             initialCenter={initialCenter}
             initialZoom={initialZoom}
           />
-
-          {/* Controles de zoom personalizados */}
           <CustomZoomControl mapRef={mapRef} />
         </div>
 
