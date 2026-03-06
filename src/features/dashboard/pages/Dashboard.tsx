@@ -5,7 +5,9 @@ import { useBreakpoint } from "@/hooks/useBreakpoints";
 import { LineChartWrapper } from "@/libs/recharts";
 import { useState } from "react";
 import { IconArrowNarrowLeft, IconX } from "@tabler/icons-react";
-import LineGradientWhite from "@/components/ui/LineGradientWhite";
+import TopBarMap from "../components/TopBarMap";
+import { Marker } from "react-map-gl";
+import MarkerGateway from "../components/markers/MarkerGateway";
 
 // Ejemplo de uso
 const actividadPuertas = [
@@ -25,36 +27,12 @@ function Dashboard() {
     >
       <div className="col-span-10 h-full flex flex-col justify-between items-center w-full">
         <BaseMap>
-          <LineGradientWhite top="1.1rem" height="1.5rem" color={"#f9fafb50"} />
-          <div className="absolute px-4 w-full h-10 bg-linear-to-r from-bg-200 to-bg-100 top-0 left-0 flex justify-start items-center gap-5">
-            <h5 className="text-text-200">Gateways</h5>
-            <div className="flex">
-              {[
-                ["GW-001", true],
-                ["GW-002", true],
-                ["GW-003", true],
-                ["GW-004", true],
-                ["GW-005", false],
-                ["GW-006", true],
-                ["GW-007", true],
-                ["GW-008", false],
-                ["GW-009", true],
-                ["GW-010", true],
-              ].map(([name, status], index) => (
-                <div key={index} className="flex items-center gap-1 px-2">
-                  <span
-                    className={`w-1.5 h-1.5 rounded-full ${
-                      status ? "bg-green-500" : "bg-amber-500"
-                    }`}
-                  ></span>
-                  <small
-                    className={`${status ? "text-green-500" : "text-amber-500"}`}
-                  >
-                    {name}
-                  </small>
-                </div>
-              ))}
-            </div>
+          <TopBarMap />
+          <Marker longitude={-72.9411} latitude={-41.4689} >
+            <MarkerGateway />
+          </Marker>
+          <div className="bg-bg-100 w-50 h-70 absolute right-1 bottom-1 rounded-lg ">
+
           </div>
         </BaseMap>
         <BottomBar title="">

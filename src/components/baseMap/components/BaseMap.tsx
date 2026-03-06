@@ -47,7 +47,7 @@ const BaseMap: React.FC<BaseMapProps> = ({
   onMapRef,
 }) => {
   const mapRef = useRef<MapRef>(null);
-  const [selectedLayer, setSelectedLayer] = useState<MapLayer>("light");
+  const [selectedLayer, setSelectedLayer] = useState<MapLayer>("dark");
 
   const mapLayers = useMemo<Record<MapLayer, MapLayerConfig>>(
     () => ({
