@@ -6,8 +6,41 @@ import { LineChartWrapper } from "@/libs/recharts";
 import { useState } from "react";
 import { IconArrowNarrowLeft, IconX } from "@tabler/icons-react";
 import TopBarMap from "../components/TopBarMap";
-import { Marker } from "react-map-gl";
-import MarkerGateway from "../components/markers/MarkerGateway";
+import { MapRailwayRoute, type GatewayData } from "../components/route";
+
+const routeData: GatewayData[] = [
+  {
+    id: "gw-005",
+    name: "Estación Norte",
+    longitude: -72.9411,
+    latitude: -41.4689,
+    sensors: Array.from({ length: 4 }).map((_, i) => ({
+      id: `s-${i}`,
+      status: "ok",
+      longitude: -72.9411 + (i + 1) * 0.005,
+      latitude: -41.4689 - (i + 1) * 0.002,
+    })),
+  },
+  {
+    id: "gw-006",
+    name: "Estación Central",
+    longitude: -72.9411 + 5 * 0.005,
+    latitude: -41.4689 - 5 * 0.002,
+    sensors: Array.from({ length: 3 }).map((_, i) => ({
+      id: `s-${i + 4}`,
+      status: i === 1 ? "error" : "ok",
+      longitude: -72.9411 + (i + 6) * 0.005,
+      latitude: -41.4689 - (i + 6) * 0.002,
+    })),
+  },
+  {
+    id: "gw-007",
+    name: "Estación Sur",
+    longitude: -72.9411 + 9 * 0.005,
+    latitude: -41.4689 - 9 * 0.002,
+    sensors: [],
+  },
+];
 
 // Ejemplo de uso
 const actividadPuertas = [
@@ -28,9 +61,8 @@ function Dashboard() {
       <div className="col-span-10 h-full flex flex-col justify-between items-center w-full">
         <BaseMap>
           <TopBarMap />
-          <Marker longitude={-72.9411} latitude={-41.4689} >
-            <MarkerGateway />
-          </Marker>
+          <MapRailwayRoute gateways={routeData} />
+
           <div className="bg-bg-100 w-50 h-70 absolute right-1 bottom-1 rounded-lg ">
 
           </div>
