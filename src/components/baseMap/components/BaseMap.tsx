@@ -47,7 +47,7 @@ const BaseMap: React.FC<BaseMapProps> = ({
   onMapRef,
 }) => {
   const mapRef = useRef<MapRef>(null);
-  const [selectedLayer, setSelectedLayer] = useState<MapLayer>("satellite");
+  const [selectedLayer, setSelectedLayer] = useState<MapLayer>("light");
 
   const mapLayers = useMemo<Record<MapLayer, MapLayerConfig>>(
     () => ({
@@ -222,7 +222,6 @@ const BaseMap: React.FC<BaseMapProps> = ({
       }}
       className="w-full h-full flex-1 bg-bg-100   overflow-hidden rounded relative animate-fade-in-down animate-duration-500 flex justify-center items-center"
     >
-      <div className="absolute w-full h-full -bg-linear-120 rounded from-slate-700 to-brand-200/23"></div>
       <ReactMapGL
         ref={mapRef}
         initialViewState={{
@@ -245,7 +244,7 @@ const BaseMap: React.FC<BaseMapProps> = ({
       >
         {children}
       </ReactMapGL>
-      <div className="relative h-full  z-50 bg-bg-100  flex flex-col gap-1 p-1 rounded">
+      <div className="relative h-full  z-50 bg-bg-100  flex flex-col gap-1 p-1 rounded-e">
         <div className="flex flex-col p-0.5 gap-1 border border-border rounded py-1">
           <LayerSelector
             selectedLayer={selectedLayer}

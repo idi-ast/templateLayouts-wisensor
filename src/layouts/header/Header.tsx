@@ -17,8 +17,10 @@ function Header({
 }) {
   const { isMobile } = useBreakpoint();
   return (
-    <header className="max-w-333  h-10 mx-auto    text-text-100 w-full z-100  flex items-center relative">
-      <LineGradientWhite top="-0.07rem" height="1.5rem" color={"#6b7280"} />
+    <header className="max-w-333  h-10 mx-auto text-text-100 w-full z-100  flex items-center relative">
+      <div className="w-1/3 h-3 bg-sky-500 opacity-40 blur-2xl absolute top-0 left-1/2 -translate-x-1/2"></div>
+      <LineGradientWhite top="-0.07rem" height="1.5rem" color={"blue"} />
+      <LineGradientWhite top="-0.1rem" height="0.02rem" color={"green"} />
 
       <div className="relative w-full rounded-lg  flex items-center justify-between shadow bg-linear-to-l from-bg-300 via-bg-100 to-bg-200 ">
         <div className="px-5 flex gap-1">
