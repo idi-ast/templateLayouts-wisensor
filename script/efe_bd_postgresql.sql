@@ -1,30 +1,32 @@
 CREATE TABLE "users" (
-  "id" integer PRIMARY KEY,
-  "name" varchar,
-  "email" varchar,
-  "hashed_password" varchar,
-  "foto_nombre" varchar,
-  "foto_ruta" varchar,
+  "id" SERIAL PRIMARY KEY,
+  "email" VARCHAR(255) UNIQUE NOT NULL,
+  "name" VARCHAR(255),
+  "hashed_password" VARCHAR(255) NOT NULL,
+  "photo_name" varchar,
+  "photo_route" varchar,
   "us_idtelegram" varchar,
-  "us_telefono" varchar,
-  "telegram_username" varchar,
+  "us_phone" varchar,
   "phone_whatsapp" varchar,
   "is_active" bool,
   "is_superuser" bool,
   "created_at" timestamp,
   "updated_at" timestamp,
-  "deleted_at" timestamp,
-  "created_by" integer,
-  "id_proceso" integer
+  "deleted_at" timestamp
 );
 
-CREATE TABLE "user_session" (
-  "id" integer PRIMARY KEY,
-  "user_id" integer NOT NULL,
-  "refresh_token" varchar,
-  "expires_at" timestamp,
-  "created_at" timestamp
+
+
+
+
+CREATE TABLE user_sessions (
+    id SERIAL PRIMARY KEY,
+    user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
+    refresh_token VARCHAR(512) NOT NULL,
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    expires_at TIMESTAMP WITH TIME ZONE NOT NULL
 );
+
 
 CREATE TABLE "companies" (
   "id" integer PRIMARY KEY,
@@ -39,8 +41,6 @@ CREATE TABLE "companies" (
   "phone" varchar,
   "email" varchar,
   "is_active" bool,
-  "mongodb" varchar,
-  "province_id" integer,
   "updated_at" timestamp,
   "deleted_at" timestamp
 );
@@ -65,66 +65,63 @@ CREATE TABLE "devices" (
   "dev_eui" varchar UNIQUE,
   "name" varchar,
   "serial" varchar,
-  "empresa_id" integer,
-  "id_dispositivo_padre" integer,
-  "tipo_dispositivo" varchar,
-  "last_seen" datetime,
-  "latitud_install" varchar,
-  "longitud_install" varchar,
-  "latitud_actual" varchar,
-  "longitud_actual" varchar,
+  "company_id" integer,
+  "id_device_father" integer,
+  "type_device" varchar,
+  "last_seen" timestamp,
+  "latitude_install" varchar,
+  "longitude_install" varchar,
+  "latitude_current" varchar,
+  "longitude_current" varchar,
   "created_at" timestamp,
   "updated_at" timestamp
 );
 
 CREATE TABLE "gps_device" (
   "id" integer PRIMARY KEY,
-  "bateria" varchar,
-  "motion_estado" varchar,
-  "motion_fuerza" varchar,
-  "motion_tiempo" varchar,
-  "geometria" geometry
+  "accelerometers_status" varchar,
+  "battery" integer,
+  "version" varchar,
+  "vibration_status" varchar,
+  "keep_alive_status" varchar,
+  "gps_cycle_multiplier" varchar,
+  "operating_mode" varchar,
+  "annexed" varchar
 );
 
 CREATE TABLE "sub_estacion_device" (
   "id" integer PRIMARY KEY,
-  "volt_linea" varchar,
-  "corr_ma" varchar,
-  "falla_tipo" varchar,
-  "temp_amb" varchar
+  "input_1_status" varchar,
+  "input_2_status" varchar,
+  "input_3_status" varchar,
+  "input_4_status" varchar,
+  "alert" bool
 );
 
 CREATE TABLE "gateway_device" (
   "id" integer PRIMARY KEY,
-  "ip_wan" varchar,
-  "location" varchar,
+  "ip_internal" varchar,
   "firmware_version" varchar
 );
 
 CREATE TABLE "lector_device" (
   "id" integer PRIMARY KEY,
-  "umbral_bateria_critica" varchar,
-  "modelo_bateria" varchar,
-  "last_calibration" datetime
+  "last_date_reader" varchar,
+  "battery_reader" integer
 );
 
 COMMENT ON COLUMN "devices"."dev_eui" IS 'Unique, indexado';
 
-COMMENT ON COLUMN "devices"."tipo_dispositivo" IS 'Enum: Gateway, Gps, Lector, Subestacion';
+COMMENT ON COLUMN "devices"."type_device" IS 'Enum: Gateway, Gps, Lector, Subestacion';
 
 COMMENT ON COLUMN "gps_device"."id" IS 'FK a devices.id';
-
-COMMENT ON COLUMN "gps_device"."geometria" IS 'Spatial - last fixed position';
 
 COMMENT ON COLUMN "sub_estacion_device"."id" IS 'FK a devices.id';
 
 COMMENT ON COLUMN "gateway_device"."id" IS 'FK a devices.id';
 
-COMMENT ON COLUMN "gateway_device"."location" IS 'Fixed instal text/location string';
-
 COMMENT ON COLUMN "lector_device"."id" IS 'FK a devices.id';
 
-ALTER TABLE "user_session" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id") DEFERRABLE INITIALLY IMMEDIATE;
 
 ALTER TABLE "companies_users" ADD FOREIGN KEY ("user_id") REFERENCES "users" ("id") DEFERRABLE INITIALLY IMMEDIATE;
 
@@ -132,9 +129,9 @@ ALTER TABLE "companies_users" ADD FOREIGN KEY ("company_id") REFERENCES "compani
 
 ALTER TABLE "company_config" ADD FOREIGN KEY ("company_id") REFERENCES "companies" ("id") DEFERRABLE INITIALLY IMMEDIATE;
 
-ALTER TABLE "devices" ADD FOREIGN KEY ("empresa_id") REFERENCES "companies" ("id") DEFERRABLE INITIALLY IMMEDIATE;
+ALTER TABLE "devices" ADD FOREIGN KEY ("company_id") REFERENCES "companies" ("id") DEFERRABLE INITIALLY IMMEDIATE;
 
-ALTER TABLE "devices" ADD FOREIGN KEY ("id_dispositivo_padre") REFERENCES "devices" ("id") DEFERRABLE INITIALLY IMMEDIATE;
+ALTER TABLE "devices" ADD FOREIGN KEY ("id_device_father") REFERENCES "devices" ("id") DEFERRABLE INITIALLY IMMEDIATE;
 
 ALTER TABLE "gps_device" ADD FOREIGN KEY ("id") REFERENCES "devices" ("id") DEFERRABLE INITIALLY IMMEDIATE;
 
@@ -143,3 +140,30 @@ ALTER TABLE "sub_estacion_device" ADD FOREIGN KEY ("id") REFERENCES "devices" ("
 ALTER TABLE "gateway_device" ADD FOREIGN KEY ("id") REFERENCES "devices" ("id") DEFERRABLE INITIALLY IMMEDIATE;
 
 ALTER TABLE "lector_device" ADD FOREIGN KEY ("id") REFERENCES "devices" ("id") DEFERRABLE INITIALLY IMMEDIATE;
+
+
+
+
+
+
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
+
+INSERT INTO users (email, name, hashed_password, is_active, is_superuser)
+VALUES (
+  'clehue@iotlink.cl',
+  'Administrador',
+  crypt('astidi2025', gen_salt('bf')),  -- bcrypt
+  TRUE,
+  FALSE
+)
+RETURNING id;
+
+
+
+INSERT INTO user_sessions (user_id, refresh_token, expires_at)
+VALUES (
+  1,                                 -- reemplaza por el id real
+  gen_random_uuid()::text,           -- requiere pgcrypto o uuid-ossp (ajusta si usas otra función)
+  now() + interval '30 days'
+)
+RETURNING id, refresh_token, expires_at;

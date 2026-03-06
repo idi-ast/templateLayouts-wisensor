@@ -1,6 +1,7 @@
 import React, { useCallback } from "react";
 import { IconPlus, IconMinus } from "@tabler/icons-react";
 import type { CustomZoomControlProps } from "../types";
+import LineGradientWhite from "@/components/ui/LineGradientWhite";
 
 const CustomZoomControl: React.FC<CustomZoomControlProps> = React.memo(
   ({ mapRef }) => {
@@ -14,23 +15,29 @@ const CustomZoomControl: React.FC<CustomZoomControlProps> = React.memo(
 
     return (
       <div className="flex flex-col gap-1">
-        <button
-          onClick={handleZoomIn}
-          className="bg-bg-200 gap-2 text-text-100 rounded hover:bg-bg-300 h-8 w-8 flex justify-center items-center transition-all"
-          title="Acercar"
-        >
-          <IconPlus size={20} />
-        </button>
-        <button
-          onClick={handleZoomOut}
-          className="bg-bg-200 gap-2 text-text-100 rounded hover:bg-bg-300 h-8 w-8 flex justify-center items-center transition-all"
-          title="Alejar"
-        >
-          <IconMinus size={20} />
-        </button>
+        <div className="relative">
+          <LineGradientWhite top="-0.05rem" height="1.5rem" color={"white"} />
+          <button
+            onClick={handleZoomIn}
+            className="relative text-text-200 hover:text-text-100 outline outline-transparent p-0.5 bg-linear-to-b from-bg-100 to-bg-300  shadow-lg shadow-bg-100 h-8 w-8 flex justify-center items-center transition-all"
+            title="Acercar"
+          >
+            <IconPlus size={20} />
+          </button>
+        </div>
+        <div className="relative">
+          <LineGradientWhite top="-0.05rem" height="1.5rem" color={"white"} />
+          <button
+            onClick={handleZoomOut}
+            className="relative text-text-200 hover:text-text-100 outline outline-transparent p-0.5 bg-linear-to-b from-bg-100 to-bg-300  shadow-lg shadow-bg-100 h-8 w-8 flex justify-center items-center transition-all"
+            title="Alejar"
+          >
+            <IconMinus size={20} />
+          </button>
+        </div>
       </div>
     );
-  }
+  },
 );
 
 CustomZoomControl.displayName = "CustomZoomControl";

@@ -211,7 +211,13 @@ const BaseMap: React.FC<BaseMapProps> = ({
   }, []);
 
   return (
-    <div className="w-full p-2 h-full relative animate-fade-in-down animate-duration-500">
+    <div
+      style={{
+        padding: 0.6,
+      }}
+      className="w-full h-full flex-1 bg-bg-100  overflow-hidden relative animate-fade-in-down animate-duration-500 flex justify-center items-center"
+    >
+      <div className="absolute w-full h-full -bg-linear-120 from-slate-500 to-brand-200/23"></div>
       <ReactMapGL
         ref={mapRef}
         initialViewState={{
@@ -223,7 +229,7 @@ const BaseMap: React.FC<BaseMapProps> = ({
         }}
         mapboxAccessToken={MAPBOX_TOKEN}
         mapStyle={mapLayers[selectedLayer].style}
-        style={{ width: "100%", height: "100%", minWidth: "100%" }}
+        style={{ width: "100%", height: "100%" }}
         attributionControl={false}
         reuseMaps
         maxPitch={85}
@@ -232,39 +238,38 @@ const BaseMap: React.FC<BaseMapProps> = ({
         fadeDuration={0}
         onLoad={handleMapLoad}
       >
-        <div className="absolute right-0 top-0 z-50 bg-bg-100 h-full flex flex-col gap-1 p-0.5 py-1">
-          <div className="flex flex-col p-0.5 gap-1 border border-border rounded py-1">
-            {/* Controles de navegación nativos */}
-            {/* <NavigationControl position="top-right" showCompass={true} /> */}
-
-            {/* Selector de capas */}
-            <LayerSelector
-              selectedLayer={selectedLayer}
-              onLayerChange={handleLayerChange}
-              mapLayers={mapLayers}
-            />
-
-            {/* Controles de vista */}
-            <ViewControls
-              mapRef={mapRef}
-              initialCenter={initialCenter}
-              initialZoom={initialZoom}
-            />
-
-            {/* Controles de zoom personalizados */}
-            <CustomZoomControl mapRef={mapRef} />
-          </div>
-
-          <div className="flex justify-center items-center h-full">
-            <span className="[writing-mode:vertical-rl] truncate rotate-180 text-base tracking-[0.3em] text-text-300 font-light">
-              Configuración Mapa
-            </span>
-          </div>
-        </div>
-
         {/* Contenido adicional (markers, layers, etc.) */}
         {children}
       </ReactMapGL>
+      <div className="relative h-full  z-50 bg-bg-100  flex flex-col gap-1 p-1">
+        <div className="flex flex-col p-0.5 gap-1 border border-border rounded py-1">
+          {/* Controles de navegación nativos */}
+          {/* <NavigationControl position="top-right" showCompass={true} /> */}
+
+          {/* Selector de capas */}
+          <LayerSelector
+            selectedLayer={selectedLayer}
+            onLayerChange={handleLayerChange}
+            mapLayers={mapLayers}
+          />
+
+          {/* Controles de vista */}
+          <ViewControls
+            mapRef={mapRef}
+            initialCenter={initialCenter}
+            initialZoom={initialZoom}
+          />
+
+          {/* Controles de zoom personalizados */}
+          <CustomZoomControl mapRef={mapRef} />
+        </div>
+
+        <div className="flex justify-center items-center h-full">
+          <span className="[writing-mode:vertical-rl] truncate rotate-180 text-base tracking-[0.3em] text-text-300 font-light">
+            Configuración Mapa
+          </span>
+        </div>
+      </div>
     </div>
   );
 };

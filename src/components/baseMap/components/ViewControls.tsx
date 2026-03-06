@@ -6,6 +6,7 @@ import {
   IconRefresh,
 } from "@tabler/icons-react";
 import type { ViewControlsProps } from "../types";
+import LineGradientWhite from "@/components/ui/LineGradientWhite";
 
 const ViewControls: React.FC<ViewControlsProps> = ({
   mapRef,
@@ -46,34 +47,46 @@ const ViewControls: React.FC<ViewControlsProps> = ({
 
   return (
     <div className="flex flex-col gap-1">
-      <button
-        onClick={setTopView}
-        className="bg-bg-200 gap-2 text-text-100 rounded hover:bg-bg-300 h-8 w-8 flex justify-center items-center transition-all"
-        title="Vista superior (2D)"
-      >
-        <IconMap size={20} />
-      </button>
-      <button
-        onClick={set3DView}
-        className="bg-bg-200 gap-2 text-text-100 rounded hover:bg-bg-300 h-8 w-8 flex justify-center items-center transition-all"
-        title="Vista 3D"
-      >
-        <Icon3dCubeSphere size={20} />
-      </button>
-      <button
-        onClick={resetNorth}
-        className="bg-bg-200 gap-2 text-text-100 rounded hover:bg-bg-300 h-8 w-8 flex justify-center items-center transition-all"
-        title="Orientar al norte"
-      >
-        <IconCompass size={20} />
-      </button>
-      <button
-        onClick={resetView}
-        className="bg-bg-200 gap-2 text-text-100 rounded hover:bg-bg-300 h-8 w-8 flex justify-center items-center transition-all"
-        title="Resetear vista"
-      >
-        <IconRefresh size={20} />
-      </button>
+      <div className="relative ">
+        <LineGradientWhite top="-0.05rem" height="1.5rem" color={"white"} />
+        <button
+          onClick={setTopView}
+          className="relative text-text-200 hover:text-text-100 outline outline-transparent p-0.5 bg-linear-to-b from-bg-100 to-bg-300  shadow-lg shadow-bg-100 h-8 w-8 flex justify-center items-center transition-all"
+          title="Vista superior (2D)"
+        >
+          <IconMap size={20} />
+        </button>
+      </div>
+      <div className="relative ">
+        <LineGradientWhite top="-0.05rem" height="1.5rem" color={"white"} />
+        <button
+          onClick={set3DView}
+          className="relative text-text-200 hover:text-text-100 outline outline-transparent p-0.5 bg-linear-to-b from-bg-100 to-bg-300  shadow-lg shadow-bg-100 h-8 w-8 flex justify-center items-center transition-all"
+          title="Vista 3Dq"
+        >
+          <Icon3dCubeSphere size={20} />
+        </button>
+      </div>
+      <div className="relative ">
+        <LineGradientWhite top="-0.05rem" height="1.5rem" color={"white"} />
+        <button
+          onClick={resetNorth}
+          className="relative text-text-200 hover:text-text-100 outline outline-transparent p-0.5 bg-linear-to-b from-bg-100 to-bg-300  shadow-lg shadow-bg-100 h-8 w-8 flex justify-center items-center transition-all"
+          title="Orientar al norte"
+        >
+          <IconCompass size={20} />
+        </button>
+      </div>
+      <div className="relative ">
+        <LineGradientWhite top="-0.05rem" height="1.5rem" color={"white"} />
+        <button
+          onClick={resetView}
+          className="relative text-text-200 hover:text-text-100 outline outline-transparent p-0.5 bg-linear-to-b from-bg-100 to-bg-300  shadow-lg shadow-bg-100 h-8 w-8 flex justify-center items-center transition-all"
+          title="Resetear vista"
+        >
+          <IconRefresh size={20} />
+        </button>
+      </div>
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { IconMapCog, IconRosetteDiscountCheck } from "@tabler/icons-react";
 import type { LayerSelectorProps, MapLayer } from "../types";
+import LineGradientWhite from "@/components/ui/LineGradientWhite";
 
 const LayerSelector: React.FC<LayerSelectorProps> = ({
   selectedLayer,
@@ -17,11 +18,12 @@ const LayerSelector: React.FC<LayerSelectorProps> = ({
   return (
     <div className="z-50">
       <div className="relative">
+        <LineGradientWhite top="-0.05rem" height="1.5rem" color={"white"} />
         <button
           onClick={() => setShowMenu(!showMenu)}
           className={`
-            ${showMenu ? "bg-bg-100 text-text-200 " : "bg-bg-200"}
-             gap-1 text-text-100 hover:bg-bg-300 rounded h-8 w-8 flex justify-center items-center transition-all`}
+            ${showMenu ? "bg-bg-100 text-text-200  z-100" : "bg-linear-to-b from-bg-100 to-bg-300"}
+             relative text-text-200 hover:text-text-100 outline outline-transparent p-0.5   shadow-lg shadow-bg-100 h-8 w-8 flex justify-center items-center transition-all`}
         >
           <IconMapCog size={20} />
         </button>

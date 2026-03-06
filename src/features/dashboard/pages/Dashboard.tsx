@@ -20,14 +20,11 @@ function Dashboard() {
   const [isOpenRightBar, setOpenRightBar] = useState(false);
   return (
     <div
-      className={`w-full h-full  ${isMobile ? "flex flex-row" : "grid grid-cols-12"}`}
+      className={`w-full h-full  ${isMobile ? "flex flex-row" : "grid grid-cols-12 overflow-hidden"}`}
     >
-      <div className="col-span-10 h-full flex flex-col w-full">
+      <div className="col-span-10 h-full flex flex-col justify-between items-center w-full">
         <BaseMap>{/* Contenido del mapa */}</BaseMap>
-        <BottomBar
-          title="Actividad de Puertas"
-          overlays={<div className="bg-100 px-3">Overlays</div>}
-        >
+        <BottomBar title="">
           <LineChartWrapper
             data={actividadPuertas}
             dataKey={["aperturas", "cierres"]}

@@ -37,7 +37,7 @@ export default function UserMenu() {
 
   return (
     <div className="relative" ref={menuRef}>
-      <LineGradientWhite top="" height="0.05rem" opacity="1" />
+      <LineGradientWhite top="" height="0.05rem" color="#a7acb6" />
 
       {/* Trigger */}
       <button
